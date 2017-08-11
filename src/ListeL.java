@@ -13,9 +13,9 @@ public class ListeL<I extends Comparable<I>> {
 	private ElementL<I> kopf; // Referenz auf den Anfang der Liste
 
 	public void selectionsSort() { // Methode für den Selectionssort
-		
+
 		ElementL<I> temp = null;
-		
+
 		if (kopf == null || kopf.nach == null) {
 			return;
 		}
@@ -42,18 +42,20 @@ public class ListeL<I extends Comparable<I>> {
 	}
 
 	public void tauschen(ElementL<I> tausch, ElementL<I> minimum) {
-		
+
 		ElementL<I> vormin = kopf;
 		ElementL<I> nachmin = minimum.nach;
 		ElementL<I> nachtausch = tausch.nach;
-		
-		while(vormin.nach != minimum) {
-			vormin = vormin.nach;
+
+		if (kopf != minimum) {
+			while (vormin.nach != minimum) {
+				vormin = vormin.nach;
+			}
 		}
 		System.out.println("Vor Minimum: " + vormin.inhalt);
-		
-		if(tausch == minimum) {
-			return;
+
+		if (tausch == minimum || kopf == minimum) {
+			// nix tun
 		} else if (tausch == kopf && minimum.nach != null) {
 			vormin.nach = tausch;
 			tausch.nach = nachmin;
@@ -65,7 +67,7 @@ public class ListeL<I extends Comparable<I>> {
 			tausch.nach = null;
 			kopf = minimum;
 		}
-		
+
 	}
 
 	public void insert(I o) {
@@ -92,7 +94,7 @@ public class ListeL<I extends Comparable<I>> {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ListeL<Integer> liste = new ListeL<Integer>();
-		liste.insert(0);
+		liste.insert(90);
 		liste.insert(85);
 		liste.insert(1997);
 		liste.insert(2005);
@@ -100,7 +102,7 @@ public class ListeL<I extends Comparable<I>> {
 		liste.insert(1);
 		liste.insert(19);
 		liste.insert(18);
-		liste.insert(10);
+		liste.insert(0);
 
 		System.out.println(liste);
 
