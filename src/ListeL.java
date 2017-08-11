@@ -29,20 +29,22 @@ public class ListeL<I extends Comparable<I>> {
 				if (pos.inhalt.compareTo(min.inhalt) < 0) {
 					min = pos;
 				}
-				// System.out.println("Minimum: " + min.inhalt.toString() + " Momentane
-				// Position: " + pos.inhalt.toString());
 				pos = pos.nach;
 			}
 			System.out.println("Zu Tauschen: " + postausch.inhalt + " Minimum: " + min.inhalt);
 			temp = postausch.nach;
-			tauschen(); // Hier muss postausch mit minimum getausch werden!
+			tauschen(postausch, min); // Hier muss postausch mit minimum getausch werden!
 			min = temp;
 			postausch = temp;
 		}
 	}
 
-	public void tauschen() {
+	public void tauschen(ElementL<I> tausch, ElementL<I> minimum) {
+		ElementL<I> temp1 = new ElementL<I>(tausch.inhalt);
+		ElementL<I> temp2 = new ElementL<I>(minimum.inhalt);
 
+		minimum.inhalt = temp1.inhalt;
+		tausch.inhalt = temp2.inhalt;
 
 	}
 
@@ -70,11 +72,11 @@ public class ListeL<I extends Comparable<I>> {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ListeL<Integer> liste = new ListeL<Integer>();
-		liste.insert(90);
+		liste.insert(70);
 		liste.insert(85);
 		liste.insert(1997);
-		liste.insert(2005);
-		liste.insert(1998);
+		liste.insert(88);
+		liste.insert(0);
 		liste.insert(1);
 		liste.insert(19);
 		liste.insert(5);
