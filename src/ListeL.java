@@ -21,19 +21,26 @@ public class ListeL<I extends Comparable<I>> {
 		ElementL<I> min = pos; // derzeitiges Minimum;
 
 		while (postausch != null) {
-			System.out.println("Tauschobjekt: " + postausch.inhalt.toString());
 			pos = postausch;
 			while (pos != null) {
 				if (pos.inhalt.compareTo(min.inhalt) < 0) {
 					min = pos;
 				}
-				System.out
-						.println("Minimum: " + min.inhalt.toString() + " Momentane Position: " + pos.inhalt.toString());
+				//System.out.println("Minimum: " + min.inhalt.toString() + " Momentane Position: " + pos.inhalt.toString());
 				pos = pos.nach;
 			}
-			pos = postausch;
+			System.out.println("Zu Tauschen: " + postausch.inhalt + " Minimum: " + min.inhalt);
+			tauschen(postausch, min);		//Hier muss postausch mit minimum getausch werden!
+			min = postausch.nach;
 			postausch = postausch.nach;
 		}
+	}
+	
+	public void tauschen(ElementL<I> tausch, ElementL<I> minimum) {
+		if(tausch == minimum) {
+			return;
+		}
+		
 	}
 
 	public void insert(I o) {
@@ -60,15 +67,17 @@ public class ListeL<I extends Comparable<I>> {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ListeL<Integer> liste = new ListeL<Integer>();
-		liste.insert(1);
-		liste.insert(1993);
+		liste.insert(90);
+		liste.insert(85);
 		liste.insert(1997);
 		liste.insert(2005);
 		liste.insert(1998);
-		liste.insert(2000);
-		liste.insert(8);
+		liste.insert(1);
+		liste.insert(19);
 		liste.insert(18);
 		liste.insert(10);
+		
+		System.out.println(liste);
 
 		liste.selectionsSort();
 
