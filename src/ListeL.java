@@ -31,7 +31,7 @@ public class ListeL<I extends Comparable<I>> {
 				}
 				pos = pos.nach;
 			}
-			System.out.println("Zu Tauschen: " + postausch.inhalt + " Minimum: " + min.inhalt);
+			//System.out.println("Zu Tauschen: " + postausch.inhalt + " Minimum: " + min.inhalt);
 			temp = postausch.nach;
 			tauschen(postausch, min); // Hier muss postausch mit minimum getausch werden!
 			min = temp;
