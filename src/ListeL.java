@@ -35,38 +35,14 @@ public class ListeL<I extends Comparable<I>> {
 			}
 			System.out.println("Zu Tauschen: " + postausch.inhalt + " Minimum: " + min.inhalt);
 			temp = postausch.nach;
-			tauschen(postausch, min); // Hier muss postausch mit minimum getausch werden!
+			tauschen(); // Hier muss postausch mit minimum getausch werden!
 			min = temp;
 			postausch = temp;
 		}
 	}
 
-	public void tauschen(ElementL<I> tausch, ElementL<I> minimum) {
+	public void tauschen() {
 
-		ElementL<I> vormin = kopf;
-		ElementL<I> nachmin = minimum.nach;
-		ElementL<I> nachtausch = tausch.nach;
-
-		if (kopf != minimum) {
-			while (vormin.nach != minimum) {
-				vormin = vormin.nach;
-			}
-		}
-		System.out.println("Vor Minimum: " + vormin.inhalt);
-
-		if (tausch == minimum || kopf == minimum) {
-			// nix tun
-		} else if (tausch == kopf && minimum.nach != null) {
-			vormin.nach = tausch;
-			tausch.nach = nachmin;
-			minimum.nach = nachtausch;
-			kopf = minimum;
-		} else if (tausch == kopf && minimum.nach == null) {
-			minimum.nach = nachtausch;
-			vormin.nach = tausch;
-			tausch.nach = null;
-			kopf = minimum;
-		}
 
 	}
 
@@ -101,8 +77,8 @@ public class ListeL<I extends Comparable<I>> {
 		liste.insert(1998);
 		liste.insert(1);
 		liste.insert(19);
-		liste.insert(18);
-		liste.insert(0);
+		liste.insert(5);
+		liste.insert(10);
 
 		System.out.println(liste);
 
