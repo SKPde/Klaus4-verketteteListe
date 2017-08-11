@@ -13,6 +13,9 @@ public class ListeL<I extends Comparable<I>> {
 	private ElementL<I> kopf; // Referenz auf den Anfang der Liste
 
 	public void selectionsSort() { // Methode für den Selectionssort
+		
+		ElementL<I> temp = null;
+		
 		if (kopf == null || kopf.nach == null) {
 			return;
 		}
@@ -26,16 +29,18 @@ public class ListeL<I extends Comparable<I>> {
 				if (pos.inhalt.compareTo(min.inhalt) < 0) {
 					min = pos;
 				}
-				//System.out.println("Minimum: " + min.inhalt.toString() + " Momentane Position: " + pos.inhalt.toString());
+				// System.out.println("Minimum: " + min.inhalt.toString() + " Momentane
+				// Position: " + pos.inhalt.toString());
 				pos = pos.nach;
 			}
 			System.out.println("Zu Tauschen: " + postausch.inhalt + " Minimum: " + min.inhalt);
-			tauschen(postausch, min);		//Hier muss postausch mit minimum getausch werden!
-			min = postausch.nach;
-			postausch = postausch.nach;
+			temp = postausch.nach;
+			tauschen(postausch, min); // Hier muss postausch mit minimum getausch werden!
+			min = temp;
+			postausch = temp;
 		}
 	}
-	
+
 	public void tauschen(ElementL<I> tausch, ElementL<I> minimum) {
 		
 		ElementL<I> vormin = kopf;
@@ -49,10 +54,15 @@ public class ListeL<I extends Comparable<I>> {
 		
 		if(tausch == minimum) {
 			return;
-		} else if (tausch == kopf) {
+		} else if (tausch == kopf && minimum.nach != null) {
 			vormin.nach = tausch;
 			tausch.nach = nachmin;
 			minimum.nach = nachtausch;
+			kopf = minimum;
+		} else if (tausch == kopf && minimum.nach == null) {
+			minimum.nach = nachtausch;
+			vormin.nach = tausch;
+			tausch.nach = null;
 			kopf = minimum;
 		}
 		
@@ -82,7 +92,7 @@ public class ListeL<I extends Comparable<I>> {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ListeL<Integer> liste = new ListeL<Integer>();
-		liste.insert(90);
+		liste.insert(0);
 		liste.insert(85);
 		liste.insert(1997);
 		liste.insert(2005);
@@ -91,7 +101,7 @@ public class ListeL<I extends Comparable<I>> {
 		liste.insert(19);
 		liste.insert(18);
 		liste.insert(10);
-		
+
 		System.out.println(liste);
 
 		liste.selectionsSort();
