@@ -37,8 +37,23 @@ public class ListeL<I extends Comparable<I>> {
 	}
 	
 	public void tauschen(ElementL<I> tausch, ElementL<I> minimum) {
+		
+		ElementL<I> vormin = kopf;
+		ElementL<I> nachmin = minimum.nach;
+		ElementL<I> nachtausch = tausch.nach;
+		
+		while(vormin.nach != minimum) {
+			vormin = vormin.nach;
+		}
+		System.out.println("Vor Minimum: " + vormin.inhalt);
+		
 		if(tausch == minimum) {
 			return;
+		} else if (tausch == kopf) {
+			vormin.nach = tausch;
+			tausch.nach = nachmin;
+			minimum.nach = nachtausch;
+			kopf = minimum;
 		}
 		
 	}
